@@ -20,11 +20,11 @@ function App() {
     return () => {
       unsubscribeFromAuth();
     };
-  }, []); // Empty dependency array ensures that the effect runs once on mount
+  }, [currentUser]); // Empty dependency array ensures that the effect runs once on mount
 
   return (
     <div>
-      <Header />
+      <Header currentUser={currentUser}/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
