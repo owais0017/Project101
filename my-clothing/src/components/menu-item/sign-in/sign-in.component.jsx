@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import './sign-in.style.scss';
 import FormInput from "../form-input/form-input.component";
 import CustomButton from "../custom-button/custom-button.component";
-
+import { signInWithGoogle } from "../../../firebase/firebase.utils";
 function SignIn () {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -42,7 +42,8 @@ function SignIn () {
                   onChange={HandleChange}
                 />
          
-                <CustomButton type="submit">Sign in</CustomButton>
+                <CustomButton typep="submit">Sign in</CustomButton>
+                <CustomButton onClick={signInWithGoogle} >Sign in with google</CustomButton>
             </form>
         </div>
     )
