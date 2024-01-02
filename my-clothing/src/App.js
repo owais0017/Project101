@@ -4,16 +4,29 @@ import { Route, Routes } from "react-router-dom";
 import ShopPage from "./pages/homepage/shop/shop.component.jsx";
 import Header from "./components/menu-item/header/header.component.jsx";
 import SignInAndSignUp from "./pages/homepage/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx";
-import { auth } from './firebase/firebase.utils.js';
+import { auth,createUserProfileDocument } from './firebase/firebase.utils.js';
 import { useState, useEffect } from "react";
+import {  onSnapshot } from "firebase/firestore";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged(user => {
-      setCurrentUser(user);
-      console.log(currentUser); // This will log the previous state, not the updated state
+    const unsubscribeFromAuth = auth.onAuthStateChanged  (async userAuth => {    
+      if (userAuth) {
+        const userRef =await createUserProfileDocument(userAuth)
+        onSnapshot(userRef,snapshot => {
+         
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data()
+          })
+          
+          
+        })
+      } else {
+        setCurrentUser(userAuth);
+      }
     });
 
     // Cleanup function to unsubscribe when the component unmounts
