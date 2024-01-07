@@ -5,27 +5,30 @@ import ShopPage from "./pages/homepage/shop/shop.component.jsx";
 import Header from "./components/menu-item/header/header.component.jsx";
 import SignInAndSignUp from "./pages/homepage/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx";
 import { auth,createUserProfileDocument } from './firebase/firebase.utils.js';
-import { useState, useEffect } from "react";
+import {  useEffect } from "react";
 import {  onSnapshot } from "firebase/firestore";
-
+import { useDispatch,useSelector } from "react-redux";
+import { setCurrentUser } from "./redux/user.reducer.js";
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
-
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.currentUser);
+ 
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged  (async userAuth => {    
+    const unsubscribeFromAuth = auth.onAuthStateChanged  (async userAuth => {  
+      console.log(userAuth)  
       if (userAuth) {
         const userRef =await createUserProfileDocument(userAuth)
         onSnapshot(userRef,snapshot => {
-         
+         dispatch(
           setCurrentUser({
             id: snapshot.id,
             ...snapshot.data()
           })
-          
+         );
           
         })
       } else {
-        setCurrentUser(userAuth);
+        dispatch(setCurrentUser(null));
       }
     });
 
@@ -33,11 +36,13 @@ function App() {
     return () => {
       unsubscribeFromAuth();
     };
-  }, [currentUser]); // Empty dependency array ensures that the effect runs once on mount
+  }, [dispatch]); // Empty dependency array ensures that the effect runs once on mount
 
+
+  
   return (
     <div>
-      <Header currentUser={currentUser}/>
+      <Header/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
@@ -46,5 +51,7 @@ function App() {
     </div>
   );
 }
+
+
 
 export default App;
