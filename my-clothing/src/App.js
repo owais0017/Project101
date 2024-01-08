@@ -1,6 +1,6 @@
 import HomePage from "./pages/homepage/homepage.component.jsx";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import ShopPage from "./pages/homepage/shop/shop.component.jsx";
 import Header from "./components/menu-item/header/header.component.jsx";
 import SignInAndSignUp from "./pages/homepage/sign-in-and-sign-up/sign-in-and-sign-up.component.jsx";
@@ -14,8 +14,7 @@ function App() {
   const currentUser = useSelector((state) => state.currentUser);
  
   useEffect(() => {
-    const unsubscribeFromAuth = auth.onAuthStateChanged  (async userAuth => {  
-      console.log(userAuth)  
+    const unsubscribeFromAuth = auth.onAuthStateChanged  (async userAuth => {   
       if (userAuth) {
         const userRef =await createUserProfileDocument(userAuth)
         onSnapshot(userRef,snapshot => {
@@ -46,7 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
-        <Route path="/signin" element={<SignInAndSignUp />} />
+        <Route excat path="/signin" element={currentUser?(<Navigate to='/'/>):<SignInAndSignUp/>}/>
       </Routes>
     </div>
   );
