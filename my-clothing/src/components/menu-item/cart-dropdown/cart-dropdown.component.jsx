@@ -5,7 +5,6 @@ import './cart-dropdown.style.scss';
 
 
 const CartDropdown = () => {
-
   return(
   <div className='cart-dropdown'>
     <div className='cart-items' />

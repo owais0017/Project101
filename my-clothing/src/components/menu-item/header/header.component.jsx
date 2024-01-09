@@ -9,8 +9,8 @@ import CartDropdown from "../cart-dropdown/cart-dropdown.component.jsx";
 
 const Header = () => {
   const currentUser = useSelector(state=>state.currentUser);
-  const toggleCart = useSelector(state => state.toggleCart);
-
+  const toggleCart = useSelector(state => state.Cart.toggleCart);
+console.log("value" , toggleCart)
   return (
     <div className="header">
       <Link to="/">

@@ -12,7 +12,7 @@ const store = configureStore({
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   reducer: {
     currentUser: userReducer,
-    toggleCart: cartReducer,
+    Cart: cartReducer,
   },
  
 });
