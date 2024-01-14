@@ -1,8 +1,10 @@
 import React from "react";
 import './checkout.styles.scss'
 import { useSelector } from "react-redux";
+import CheckoutItem from "../../../components/menu-item/checkout-item/checkout-item.component";
 const CheckoutPage = () => {
     const CartThings = useSelector(state => state.Cart.cartItem)
+    console.log(CartThings)
         const totalCost = CartThings.reduce((accumulator, currentItem) => {
             const { price, quantity } = currentItem;
             const itemCost = price * quantity;
@@ -28,9 +30,11 @@ const CheckoutPage = () => {
            <span>Remove</span>
         </div>
         </div>
-        <div className="total">
-            <span>Total: ${totalCost}</span>
-        </div>
+        {
+         CartThings.map(CartThing => (<CheckoutItem key={CartThing.id} CartThing={CartThing} />))
+        } 
+            <div className="total">Total: ${totalCost}</div>
+        
       </div>
     );
   };
