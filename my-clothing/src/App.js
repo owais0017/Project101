@@ -9,6 +9,8 @@ import {  useEffect } from "react";
 import {  onSnapshot } from "firebase/firestore";
 import { useDispatch,useSelector } from "react-redux";
 import { setCurrentUser } from "./redux/user.reducer.js";
+import CheckoutPage from "./pages/homepage/checkout/checkout.component.jsx";
+
 function App() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
@@ -45,6 +47,7 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" element={<ShopPage />} />
+        <Route excat path="/checkout"  Component={CheckoutPage} />
         <Route excat path="/signin" element={currentUser?(<Navigate to='/'/>):<SignInAndSignUp/>}/>
       </Routes>
     </div>
