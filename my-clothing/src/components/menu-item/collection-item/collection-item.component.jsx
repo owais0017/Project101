@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { setCartItem } from "../../../redux/cart.reducer";
 
 const CollectionItem = ({item}) => {
-  
+
   const {name,price,imageUrl} = item;
   const dispatch = useDispatch();
   return(

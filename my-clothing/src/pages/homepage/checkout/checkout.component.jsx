@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import CheckoutItem from "../../../components/menu-item/checkout-item/checkout-item.component";
 const CheckoutPage = () => {
     const CartThings = useSelector(state => state.Cart.cartItem)
-    console.log(CartThings)
+    
         const totalCost = CartThings.reduce((accumulator, currentItem) => {
             const { price, quantity } = currentItem;
             const itemCost = price * quantity;
