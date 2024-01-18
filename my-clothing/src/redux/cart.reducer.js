@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { addItemToCart, removeItemFromCart } from "./cart.utils";
 
+
 const cartSlice = createSlice({
   name: "cart",
   initialState: {
@@ -34,6 +35,7 @@ const cartSlice = createSlice({
         cartItem: removeItemFromCart(state.cartItem, action.payload),
       };
     },
+    
   },
 });
 

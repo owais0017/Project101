@@ -10,11 +10,13 @@ import {  onSnapshot } from "firebase/firestore";
 import { useDispatch,useSelector } from "react-redux";
 import { setCurrentUser } from "./redux/user.reducer.js";
 import CheckoutPage from "./pages/homepage/checkout/checkout.component.jsx";
+import CollectionPage from "./pages/homepage/collection/collection.component.jsx";
 
 function App() {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUser);
- 
+  const collections = useSelector(state => state.shop_Data)
+  console.log(collections)
   useEffect(() => {
     const unsubscribeFromAuth = auth.onAuthStateChanged  (async userAuth => {   
       if (userAuth) {
@@ -46,9 +48,14 @@ function App() {
       <Header/>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/shop" element={<ShopPage />} />
+        <Route path="/shop" Component={ShopPage} />
         <Route excat path="/checkout"  Component={CheckoutPage} />
         <Route excat path="/signin" element={currentUser?(<Navigate to='/'/>):<SignInAndSignUp/>}/>
+        <Route path="/hats" element={<CollectionPage  {...collections[0]}/>} />
+        <Route path="/sneakers" element={<CollectionPage  {...collections[1]}/>} />
+        <Route path="/jackets" element={<CollectionPage  {...collections[2]}/>} />
+        <Route path="/womens" element={<CollectionPage  {...collections[3]}/>} />
+        <Route path="/mens" element={<CollectionPage  {...collections[4]}/>} />
       </Routes>
     </div>
   );

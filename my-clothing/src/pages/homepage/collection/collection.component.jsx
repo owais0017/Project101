@@ -1,27 +1,29 @@
+
+
 import React from 'react';
-import CollectionItem from '../collection-item/collection-item.component';
-import './collection-preview.style.scss';
+import CollectionItem from '../../../components/menu-item/collection-item/collection-item.component';
+import './collection.style.scss';
 
 // Other imports and code
 
-const CollectionPreview = ({ title, items }) => {
+const CollectionPage = ({ title, items }) => {
     return (
+
       <div className='collection-preview'>
   
           <>
             <h1 className='title'>{title.toUpperCase()}</h1>
             <div className='preview'>
-              {items
-                .filter((item, idx) => idx < 4 && item)
-                .map(item => {
+              {items.map(item => {
                   return <CollectionItem key={item.id} item={item} />;
                 })}
             </div>
           </>
       </div>
+
     );
   };
   
-  export default CollectionPreview;
+  export default CollectionPage;
   
 
