@@ -11,6 +11,7 @@ import { useDispatch,useSelector } from "react-redux";
 import { setCurrentUser } from "./redux/user.reducer.js";
 import CheckoutPage from "./pages/homepage/checkout/checkout.component.jsx";
 import CollectionPage from "./pages/homepage/collection/collection.component.jsx";
+import ContactPage from "./components/contact-page/contact.component.jsx";
 
 function App() {
   const dispatch = useDispatch();
@@ -46,7 +47,7 @@ function App() {
   return (
     <div>
       <Header/>
-      <Routes>
+      <Routes> 
         <Route path="/" element={<HomePage />} />
         <Route path="/shop" Component={ShopPage} />
         <Route excat path="/checkout"  Component={CheckoutPage} />
@@ -56,6 +57,7 @@ function App() {
         <Route path="/jackets" element={<CollectionPage  {...collections[2]}/>} />
         <Route path="/womens" element={<CollectionPage  {...collections[3]}/>} />
         <Route path="/mens" element={<CollectionPage  {...collections[4]}/>} />
+        <Route path="/contact" element={<ContactPage/>}/>
       </Routes>
     </div>
   );

@@ -20,7 +20,6 @@ const CollectionPage = ({ title, items }) => {
             </div>
           </>
       </div>
-
     );
   };
   

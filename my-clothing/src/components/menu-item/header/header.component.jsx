@@ -20,7 +20,7 @@ console.log("value" , toggleCart)
         <Link to="/shop" className="option">
           shop
         </Link>
-        <Link to="/shop" className="option">
+        <Link to="/contact" className="option">
           contact
         </Link>
         {currentUser ? (

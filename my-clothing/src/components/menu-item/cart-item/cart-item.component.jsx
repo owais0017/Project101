@@ -1,5 +1,4 @@
 import React from 'react';
-
 import './cart-item.style.scss';
 
 const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
@@ -11,6 +10,7 @@ const CartItem = ({ item: { imageUrl, price, name, quantity } }) => (
         {quantity} x ${price}
       </span>
     </div>
+    
   </div>
 );
 
