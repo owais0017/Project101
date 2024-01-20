@@ -47,18 +47,20 @@ function App() {
   return (
     <div>
       <Header/>
-      <Routes> 
+     { !currentUser ?  <SignInAndSignUp/>:
+     ( <Routes> 
+        
         <Route path="/" element={<HomePage />} />
+        <Route excat path="/signin" element={currentUser?(<Navigate to='/'/>):<SignInAndSignUp/>}/>
         <Route path="/shop" Component={ShopPage} />
         <Route excat path="/checkout"  Component={CheckoutPage} />
-        <Route excat path="/signin" element={currentUser?(<Navigate to='/'/>):<SignInAndSignUp/>}/>
         <Route path="/hats" element={<CollectionPage  {...collections[0]}/>} />
         <Route path="/sneakers" element={<CollectionPage  {...collections[1]}/>} />
         <Route path="/jackets" element={<CollectionPage  {...collections[2]}/>} />
         <Route path="/womens" element={<CollectionPage  {...collections[3]}/>} />
         <Route path="/mens" element={<CollectionPage  {...collections[4]}/>} />
         <Route path="/contact" element={<ContactPage/>}/>
-      </Routes>
+      </Routes>)}
     </div>
   );
 }
